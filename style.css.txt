@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0A1F44;
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+.logo {
+  width: 120px;
+  margin-top: 20px;
+}
+
+.slogan {
+  color: #F48FB1;
+  margin-bottom: 30px;
+}
+
+.box {
+  background: white;
+  color: #0A1F44;
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+button {
+  background: #F48FB1;
+  border: none;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 40px;
+}
+
+footer a {
+  color: #F48FB1;
+  text-decoration: none;
+}

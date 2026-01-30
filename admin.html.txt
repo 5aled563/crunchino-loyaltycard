@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Admin – Scanner QR</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+
+<h2>Scanner le QR du client</h2>
+
+<div id="reader" style="width:300px;margin:auto;"></div>
+
+<button onclick="addPoint()">Ajouter 1 point</button>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbzyeq_W0Q2i0bcq7m9BVIIgy0ORq9juXMok-4KajSYh09Es98VigEL27ru6jgjxiF6v/exec";
+let clientID = "";
+
+new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 })
+  .render(text => {
+    clientID = text;
+    alert("Client détecté");
+  });
+
+function addPoint() {
+  if (!clientID) {
+    alert("Scannez un QR d'abord");
+    return;
+  }
+
+  fetch(`${API}?action=update&id=${clientID}&add=1`)
+    .then(() => alert("Point ajouté"));
+}
+</script>
+
+</body>
+</html>

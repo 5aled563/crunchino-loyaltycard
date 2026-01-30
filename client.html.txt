@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Espace Client</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+</head>
+<body>
+
+<h2 id="nom"></h2>
+<p>Produits achetés : <span id="points"></span> / 7</p>
+<p id="message"></p>
+
+<div id="qrcode"></div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbzyeq_W0Q2i0bcq7m9BVIIgy0ORq9juXMok-4KajSYh09Es98VigEL27ru6jgjxiF6v/exec";
+const id = localStorage.getItem("client_id");
+
+fetch(`${API}?action=get&id=${id}`)
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById("nom").innerText = "Bienvenue " + d.nom;
+    document.getElementById("points").innerText = d.points;
+
+    if (d.points == 0) {
+      document.getElementById("message").innerText =
+        "🎉 Produit gratuit obtenu !";
+    }
+
+    new QRCode(document.getElementById("qrcode"), {
+      text: id,
+      width: 180,
+      height: 180
+    });
+  });
+</script>
+
+</body>
+</html>
